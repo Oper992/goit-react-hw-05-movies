@@ -1,16 +1,24 @@
+import { Route, Routes } from 'react-router-dom';
+import { Header } from './Header/Header';
+import { Home } from '../pages/Home';
+import { fetchTrendingToday } from '../service/api';
+
 export const App = () => {
+  const trendingMoviesList = async () => {
+    const trendingMovies = await fetchTrendingToday();
+
+    console.log(trendingMovies.data.results);
+    return trendingMovies.data.results;
+  };
+
+  trendingMoviesList();
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element="" />
+      </Routes>
+    </>
   );
 };
