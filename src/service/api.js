@@ -19,3 +19,12 @@ export const fetchMovieById = async movieId => {
 
   return movies;
 };
+
+export const fetchMovieByQuery = async query => {
+  const response = await fetch(
+    `https://${BASE_URL}/search/movie/?api_key=${API_KEY}&query=${query}`
+  );
+  const movies = await response.json();
+  console.log(movies);
+  return movies;
+};

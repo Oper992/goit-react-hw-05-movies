@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieById } from '../../../service/api';
-import styled from './Movies.module.css';
+import { fetchMovieById } from '../../service/api';
+import styled from './MovieInfo.module.css';
 
-export const Movies = () => {
+export const MovieInfo = () => {
   const [movie, setMovie] = useState({});
   const [status, setStatus] = useState('idle');
   const { id } = useParams();

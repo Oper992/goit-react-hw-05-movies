@@ -1,17 +1,10 @@
-import { Link } from 'react-router-dom';
+import { MoviesList } from '..//../components/MoviesList/MoviesList';
 
 export const Home = ({ trendingMovies }) => {
   return (
     <>
-      <h1>Trending today</h1>{' '}
-      <ul>
-        {trendingMovies.map(({ title, name, id }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`}>{title ? title : name}</Link>
-          </li>
-        ))}
-      </ul>
-      ;
+      <h1>Trending today</h1>;
+      <MoviesList movies={trendingMovies} />
     </>
   );
 };
