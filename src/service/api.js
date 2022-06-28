@@ -25,6 +25,24 @@ export const fetchMovieByQuery = async query => {
     `https://${BASE_URL}/search/movie/?api_key=${API_KEY}&query=${query}`
   );
   const movies = await response.json();
-  console.log(movies);
+//   console.log(movies);
   return movies;
 };
+
+export const fetchMovieCreditsById = async movieId => {
+  const response = await fetch(
+    `https://${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+  const movies = await response.json();
+//   console.log(movies);
+  return movies;
+};
+
+export const fetchMovieReviewsById = async movieId => {
+    const response = await fetch(
+      `https://${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
+    );
+    const movies = await response.json();
+    console.log(movies);
+    return movies;
+  };
