@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/75.44e664e9.chunk.css","mappings":"AAGA,qDACE,YACF","sources":["components/MovieInfo/MovieInfo.module.css"],"sourcesContent":[".movieInfo {\n  display: flex;\n}\n.genres {\n  display: flex;\n}\n"],"names":[],"sourceRoot":""}
