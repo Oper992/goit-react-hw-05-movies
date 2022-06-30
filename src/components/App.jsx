@@ -1,12 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Home } from '../pages/Home/Home';
-import { MovieInfo } from './MovieInfo/MovieInfo';
 import { fetchTrendingToday } from '../service/api';
-import { Movies } from '../pages/Movies/Movies';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
+
+// const createAsyncComponent = path =>{ return lazy(() => import(path))}; не работает...
+const Home = lazy(() => import('.././pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieInfo = lazy(() => import('./MovieInfo/MovieInfo'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -26,7 +28,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home trendingMovies={trendingMovies} />} />
-          <Route path="/movies" element={<Movies />}></Route>
+          <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:id" element={<MovieInfo />}>
             <Route path="cast" element={<Cast />} />
             <Route path="review" element={<Reviews />} />

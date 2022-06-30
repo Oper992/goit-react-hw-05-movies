@@ -43,6 +43,6 @@ export const fetchMovieReviewsById = async movieId => {
       `https://${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
     );
     const movies = await response.json();
-    console.log(movies);
+    // console.log(movies);
     return movies;
   };

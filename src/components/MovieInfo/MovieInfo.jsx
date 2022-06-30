@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useEffect, useState, Suspense } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieById } from '../../service/api';
 import styled from './MovieInfo.module.css';
 
-export const MovieInfo = () => {
+const MovieInfo = () => {
   const [movie, setMovie] = useState({});
   const [status, setStatus] = useState('idle');
   const { id } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     const addMovie = async () => {
@@ -15,7 +17,7 @@ export const MovieInfo = () => {
 
         setMovie(response);
         setStatus('resolve');
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.log(error.message);
       }
@@ -34,6 +36,7 @@ export const MovieInfo = () => {
     <>
       {status === 'resolve' && (
         <>
+          <Link to={backLinkHref}>{'<-'} Go back</Link>
           <div className={styled.movieInfo}>
             <img
               src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`}
@@ -64,9 +67,13 @@ export const MovieInfo = () => {
               </li>
             </ul>
           </div>
-          <Outlet />
+          <Suspense fallback={<div>Loading subpage...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </>
   );
 };
+
+export default MovieInfo;

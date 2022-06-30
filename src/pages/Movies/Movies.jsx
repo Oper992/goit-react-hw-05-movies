@@ -1,40 +1,43 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { fetchMovieByQuery } from '..//../service/api';
 import { MoviesList } from '..//../components/MoviesList/MoviesList';
 
-export const Movies = () => {
-  const [query, setQuery] = useState('');
+const Movies = () => {
   const [moviesByQuery, setMoviesByQuery] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onSubmit = e => {
     e.preventDefault();
-    // console.log(e.target[0].value);
-    setQuery(e.target[0].value);
+    const query = e.target[0].value;
+    const nextParams = query !== '' ? { name: query } : {};
+
+    setSearchParams(nextParams);
   };
 
   useEffect(() => {
-    if (query) {
-      fetchMovieByQuery(query)
+    // console.log(searchParams.get('name'));
+    if (searchParams.get('name')) {
+      fetchMovieByQuery(searchParams.get('name'))
         .then(movies => setMoviesByQuery(movies.results))
         .catch(error => console.log(error.message));
     }
-  }, [query]);
+  }, [searchParams]);
 
   return (
     <>
-      {moviesByQuery.length ? (
-        <MoviesList movies={moviesByQuery} />
-      ) : (
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="паляниця..."
-          ></input>
-          <button type="submit">Search</button>
-        </form>
-      )}
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="паляниця..."
+        ></input>
+        <button type="submit">Search</button>
+      </form>
+      {moviesByQuery.length !== 0 && <MoviesList movies={moviesByQuery} />}
     </>
   );
 };
+
+export default Movies;
