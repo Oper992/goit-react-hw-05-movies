@@ -60,7 +60,14 @@ const MovieInfo = () => {
             <p>Additional information</p>
             <ul>
               <li>
-                <Link to="cast" state={{ from: location.state.from }}>
+                <Link
+                  to="cast"
+                  state={
+                    location.state.from
+                      ? { from: location.state.from }
+                      : { from: '/' }
+                  }
+                >
                   Cast
                 </Link>
               </li>

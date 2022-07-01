@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-import { SharedLayout } from './SharedLayout/SharedLayout';
+import { SharedLayout } from './components/SharedLayout/SharedLayout';
 
 // const createAsyncComponent = path =>{ return lazy(() => import(path))}; не работает...
-const Home = lazy(() => import('.././pages/Home/Home'));
-const Movies = lazy(() => import('../pages/Movies/Movies'));
-const MovieInfo = lazy(() => import('./MovieInfo/MovieInfo'));
-const Cast = lazy(() => import('./Cast/Cast'));
-const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Home = lazy(() => import('./pages/Home/Home'));
+const Movies = lazy(() => import('./pages/Movies/Movies'));
+const MovieInfo = lazy(() => import('./pages/MovieInfo/MovieInfo'));
+const Cast = lazy(() => import('./pages/Cast/Cast'));
+const Reviews = lazy(() => import('./pages/Reviews/Reviews'));
 
 export const App = () => {
   return (

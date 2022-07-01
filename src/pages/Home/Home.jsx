@@ -9,8 +9,12 @@ const Home = () => {
     const addTrendingMovies = async () => {
       const response = await fetchTrendingToday();
 
-      setTrendingMovies(response);
-      // console.log(response);
+      const justTheRightProperties = response.map(({ title, name, id }) => {
+        return { title, name, id };
+      });
+
+      // console.log(newArray);
+      setTrendingMovies(justTheRightProperties);
     };
     addTrendingMovies();
   }, []);

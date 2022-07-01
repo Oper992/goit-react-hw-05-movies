@@ -19,7 +19,15 @@ const Movies = () => {
     // console.log(searchParams.get('name'));
     if (searchParams.get('name')) {
       fetchMovieByQuery(searchParams.get('name'))
-        .then(movies => setMoviesByQuery(movies.results))
+        .then(movies => {
+          const justTheRightProperties = movies.results.map(
+            ({ title, name, id }) => {
+              return { title, name, id };
+            }
+          );
+
+          setMoviesByQuery(justTheRightProperties);
+        })
         .catch(error => console.log(error.message));
     }
   }, [searchParams]);
