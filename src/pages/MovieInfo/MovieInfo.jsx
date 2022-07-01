@@ -60,12 +60,12 @@ const MovieInfo = () => {
             <p>Additional information</p>
             <ul>
               <li>
-                <Link to="cast" state={{ from: backLinkHref }}>
+                <Link to="cast" state={{ from: location.state?.from ?? '/' }}>
                   Cast
                 </Link>
               </li>
               <li>
-                <Link to="review" state={{ from: backLinkHref }}>
+                <Link to="review" state={{ from: location.state?.from ?? '/' }}>
                   Review
                 </Link>
               </li>
