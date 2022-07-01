@@ -62,11 +62,7 @@ const MovieInfo = () => {
               <li>
                 <Link
                   to="cast"
-                  state={
-                    location.state.from
-                      ? { from: location.state.from }
-                      : { from: '/' }
-                  }
+                  state={location.state.from && { from: location.state.from }}
                 >
                   Cast
                 </Link>
@@ -74,11 +70,7 @@ const MovieInfo = () => {
               <li>
                 <Link
                   to="review"
-                  state={
-                    location.state.from
-                      ? { from: location.state.from }
-                      : { from: '/' }
-                  }
+                  state={location.state.from && { from: location.state.from }}
                 >
                   Review
                 </Link>
