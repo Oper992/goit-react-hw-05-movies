@@ -65,7 +65,14 @@ const MovieInfo = () => {
                 </Link>
               </li>
               <li>
-                <Link to="review" state={{ from: location.state.from }}>
+                <Link
+                  to="review"
+                  state={
+                    location.state.from
+                      ? { from: location.state.from }
+                      : { from: '/' }
+                  }
+                >
                   Review
                 </Link>
               </li>
