@@ -5,6 +5,7 @@ import { MoviesList } from '..//../components/MoviesList/MoviesList';
 
 const Movies = () => {
   const [moviesByQuery, setMoviesByQuery] = useState([]);
+  const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onSubmit = e => {
@@ -14,6 +15,15 @@ const Movies = () => {
 
     setSearchParams(nextParams);
   };
+
+  const onChange = e => {
+    // console.log(e.target.value);
+    setQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    searchParams.get('name') && setQuery(searchParams.get('name'));
+  }, [searchParams]);
 
   useEffect(() => {
     // console.log(searchParams.get('name'));
@@ -36,6 +46,8 @@ const Movies = () => {
     <>
       <form onSubmit={onSubmit}>
         <input
+          onChange={onChange}
+          value={query}
           type="text"
           autoComplete="off"
           autoFocus

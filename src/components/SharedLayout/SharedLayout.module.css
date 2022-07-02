@@ -8,16 +8,22 @@
   display: flex;
 }
 
-.link {
+.linkStyle {
   text-decoration: none;
   font-size: 20px;
+}
+
+.link {
+  composes: linkStyle;
   color: floralwhite;
 }
 
-.link:not(:last-child) {
+.link:not(:last-child),
+.activeLink:not(:last-child) {
   margin-right: 20px;
 }
 
-.link:focus {
+.activeLink {
+  composes: linkStyle;
   color: tomato;
 }
